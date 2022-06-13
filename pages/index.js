@@ -5,6 +5,7 @@ import SmallCard from "../components/SmallCard"
 import MediumCard from "../components/MediumCard";
 import LargeCard from "../components/LargeCard";
 import Footer from "../components/Footer";
+import Image from "next/image";
 
 export default function Home({exploreData, cardsData}) {
   return (
@@ -20,12 +21,13 @@ export default function Home({exploreData, cardsData}) {
         {/* Main */}
 
         <main className={"max-w-7xl mx-auto px-8 sm:px-16"}>
+
             <section className={"pt-6"}>
                 <h2 className={"text-4xl font-semibold pb-5"}>Explore Nearby</h2>
                 {/* Pull some data from a server -API endpoints (STATIC or Server Rendering)*/}
                 <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"}>
-                    {exploreData?.map((img, distance, location) => (
-                        <SmallCard key={img} img={img} distance={distance} location={location}/>
+                    {exploreData?.map((item) => (
+                        <SmallCard key={item.img} img={item.img} distance={item.distance} location={item.location}/>
                     ))}
                 </div>
             </section>
@@ -64,5 +66,5 @@ export async function getStaticProps() {
             exploreData,
             cardsData,
         },
-    }
+    };
 }
